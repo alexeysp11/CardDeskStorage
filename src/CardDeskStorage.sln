@@ -5,18 +5,27 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardDeskStorage.Library", "CardDeskStorage.Library\CardDeskStorage.Library.csproj", "{5BB0543C-24E9-40B3-82D8-4A9C519F775B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardDeskStorage.Library.Tests", "CardDeskStorage.Library.Tests\CardDeskStorage.Library.Tests.csproj", "{A3AF9111-2FDD-432C-BBFD-D51C59ED03E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5BB0543C-24E9-40B3-82D8-4A9C519F775B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5BB0543C-24E9-40B3-82D8-4A9C519F775B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BB0543C-24E9-40B3-82D8-4A9C519F775B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BB0543C-24E9-40B3-82D8-4A9C519F775B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3AF9111-2FDD-432C-BBFD-D51C59ED03E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3AF9111-2FDD-432C-BBFD-D51C59ED03E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3AF9111-2FDD-432C-BBFD-D51C59ED03E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3AF9111-2FDD-432C-BBFD-D51C59ED03E2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F25CE3A-3584-4FFE-AFD3-3E2B4A74FAF6}
 	EndGlobalSection
 EndGlobal
