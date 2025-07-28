@@ -16,7 +16,7 @@ public class Card
         return $"{Rank} of {Suit}";
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (obj == null || GetType() != obj.GetType())
         {
