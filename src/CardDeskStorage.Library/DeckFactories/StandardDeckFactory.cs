@@ -1,4 +1,6 @@
-﻿namespace CardDeskStorage.Library.Models;
+﻿using CardDeskStorage.Library.Models;
+
+namespace CardDeskStorage.Library.DeckFactories;
 
 public static class StandardDeckFactory
 {
