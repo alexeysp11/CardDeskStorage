@@ -11,7 +11,7 @@ public static class DeckFactory
         {
             foreach (Rank rank in Enum.GetValues(typeof(Rank)))
             {
-                deck.Add(new Card(suit, rank));
+                deck.Add(new Card { Suit = suit, Rank = rank });
             }
         }
         return deck;
@@ -28,7 +28,7 @@ public static class DeckFactory
                 {
                     continue;
                 }
-                deck.Add(new Card(suit, rank));
+                deck.Add(new Card{ Suit = suit, Rank = rank });
             }
         }
         return deck;
