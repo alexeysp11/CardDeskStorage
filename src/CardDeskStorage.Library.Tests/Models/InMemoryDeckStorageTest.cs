@@ -1,7 +1,3 @@
-using Xunit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using CardDeskStorage.Library.Models;
 using CardDeskStorage.Library.ShuffleAlgorithms;
 
@@ -14,7 +10,15 @@ public class InMemoryDeckStorageTest
     public InMemoryDeckStorageTest()
     {
         _deckStorage = new InMemoryDeckStorage();
-        _testCards = new List<Card> { new Card { Suit = Suit.Hearts, Rank = Rank.Ace }, new Card { Suit = Suit.Diamonds, Rank = Rank.King }, new Card { Suit = Suit.Spades, Rank = Rank.Seven }, new Card { Suit = Suit.Clubs, Rank = Rank.Queen }, new Card { Suit = Suit.Clubs, Rank = Rank.Jack }, new Card { Suit = Suit.Spades, Rank = Rank.Nine } };
+        _testCards = new List<Card>
+        {
+            new Card { Suit = Suit.Hearts, Rank = Rank.Ace },
+            new Card { Suit = Suit.Diamonds, Rank = Rank.King },
+            new Card { Suit = Suit.Spades, Rank = Rank.Seven },
+            new Card { Suit = Suit.Clubs, Rank = Rank.Queen },
+            new Card { Suit = Suit.Clubs, Rank = Rank.Jack },
+            new Card { Suit = Suit.Spades, Rank = Rank.Nine }
+        };
         _shuffleAlgorithm = new SimpleShuffleAlgorithm();
     }
 
@@ -136,7 +140,11 @@ public class InMemoryDeckStorageTest
     public void AreDecksInSameOrder_DifferentOrder_ReturnsFalse()
     {
        _deckStorage.CreateDeck("TestDeck1", _testCards, _shuffleAlgorithm);
-       _deckStorage.CreateDeck("TestDeck2", new List<Card> { new Card { Suit = Suit.Diamonds, Rank = Rank.King }, new Card { Suit = Suit.Hearts, Rank = Rank.Ace } }, _shuffleAlgorithm);
+       _deckStorage.CreateDeck("TestDeck2", new List<Card>
+       {
+           new Card { Suit = Suit.Diamonds, Rank = Rank.King },
+           new Card { Suit = Suit.Hearts, Rank = Rank.Ace }
+       }, _shuffleAlgorithm);
 
        Assert.False(_deckStorage.AreDecksInSameOrder("TestDeck1", "TestDeck2"));
     }

@@ -1,6 +1,3 @@
-using Xunit;
-using System;
-using System.Collections.Generic;
 using CardDeskStorage.Library.Models;
 using CardDeskStorage.Library.ShuffleAlgorithms;
 
@@ -11,7 +8,7 @@ public class DeckTests
         public ShuffleAlgorithmType Type => ShuffleAlgorithmType.None;
 
         public bool ShuffleCalled { get; set; }
-        public List<Card> CardsShuffled { get; set; }
+        public List<Card>? CardsShuffled { get; set; }
 
         public void Shuffle(List<Card> deck)
         {
@@ -45,7 +42,11 @@ public class DeckTests
             ShuffleAlgorithmType = ShuffleAlgorithmType.None,
             ShuffleAlgorithm = stubShuffleAlgorithm
         };
-        var cards = new List<Card> { new Card { Suit = Suit.Hearts, Rank = Rank.Ace }, new Card { Suit = Suit.Diamonds, Rank = Rank.King } };
+        var cards = new List<Card>
+        {
+            new Card { Suit = Suit.Hearts, Rank = Rank.Ace },
+            new Card { Suit = Suit.Diamonds, Rank = Rank.King }
+        };
         deck.Cards = cards;
 
         // Act
@@ -62,7 +63,11 @@ public class DeckTests
         // Arrange
         var stubShuffleAlgorithm = new StubShuffleAlgorithm();
         var deck = new Deck { ShuffleAlgorithm = stubShuffleAlgorithm };
-        var cards = new List<Card> { new Card { Suit = Suit.Hearts, Rank = Rank.Ace }, new Card { Suit = Suit.Diamonds, Rank = Rank.King } };
+        var cards = new List<Card>
+        {
+            new Card { Suit = Suit.Hearts, Rank = Rank.Ace },
+            new Card { Suit = Suit.Diamonds, Rank = Rank.King }
+        };
         deck.Cards = cards;
 
         // Act
@@ -110,7 +115,11 @@ public class DeckTests
     public void IsSameOrder_SameOrder_ReturnsTrue()
     {
         // Arrange
-        var cards = new List<Card> { new Card { Suit = Suit.Hearts, Rank = Rank.Ace }, new Card { Suit = Suit.Diamonds, Rank = Rank.King } };
+        var cards = new List<Card>
+        {
+            new Card { Suit = Suit.Hearts, Rank = Rank.Ace },
+            new Card { Suit = Suit.Diamonds, Rank = Rank.King }
+        };
         var deck1 = new Deck { Cards = cards };
         var deck2 = new Deck { Cards = new List<Card>(cards) };
 
@@ -125,8 +134,16 @@ public class DeckTests
     public void IsSameOrder_DifferentOrder_ReturnsFalse()
     {
         // Arrange
-        var cards1 = new List<Card> { new Card { Suit = Suit.Hearts, Rank = Rank.Ace }, new Card { Suit = Suit.Diamonds, Rank = Rank.King } };
-        var cards2 = new List<Card> { new Card { Suit = Suit.Diamonds, Rank = Rank.King }, new Card { Suit = Suit.Hearts, Rank = Rank.Ace } };
+        var cards1 = new List<Card>
+        {
+            new Card { Suit = Suit.Hearts, Rank = Rank.Ace },
+            new Card { Suit = Suit.Diamonds, Rank = Rank.King }
+        };
+        var cards2 = new List<Card>
+        {
+            new Card { Suit = Suit.Diamonds, Rank = Rank.King },
+            new Card { Suit = Suit.Hearts, Rank = Rank.Ace }
+        };
         var deck1 = new Deck { Cards = cards1 };
         var deck2 = new Deck { Cards = cards2 };
 
@@ -142,7 +159,11 @@ public class DeckTests
     {
         // Arrange
         var cards1 = new List<Card> { new Card { Suit = Suit.Hearts, Rank = Rank.Ace } };
-        var cards2 = new List<Card> { new Card { Suit = Suit.Hearts, Rank = Rank.Ace }, new Card { Suit = Suit.Diamonds, Rank = Rank.King } };
+        var cards2 = new List<Card>
+        {
+            new Card { Suit = Suit.Hearts, Rank = Rank.Ace },
+            new Card { Suit = Suit.Diamonds, Rank = Rank.King }
+        };
         var deck1 = new Deck { Cards = cards1 };
         var deck2 = new Deck { Cards = cards2 };
 

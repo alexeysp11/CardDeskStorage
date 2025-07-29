@@ -18,7 +18,7 @@ public class DeckStorageFromDb : IDeckStorage
         var deck = new Deck
         {
             Name = name,
-            ShuffleAlgorithmType = shuffleAlgorithm.Type == null ? ShuffleAlgorithmType.None : shuffleAlgorithm.Type,
+            ShuffleAlgorithmType = shuffleAlgorithm?.Type == null ? ShuffleAlgorithmType.None : shuffleAlgorithm.Type,
             Cards = cards.Select(c => new Card { Suit = c.Suit, Rank = c.Rank }).ToList()
         };
 
@@ -42,7 +42,7 @@ public class DeckStorageFromDb : IDeckStorage
         }
 
         deck.ShuffleAlgorithm = ShuffleAlgorithmFactory.CreateShuffleAlgorithm(deck.ShuffleAlgorithmType.Value);
-        deck.ShuffleAlgorithm.Shuffle(deck.Cards);
+        deck.ShuffleAlgorithm?.Shuffle(deck.Cards);
 
         _context.SaveChanges();
     }
