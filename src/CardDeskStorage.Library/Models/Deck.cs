@@ -10,44 +10,22 @@ public class Deck
     public ShuffleAlgorithmType? ShuffleAlgorithmType { get; set; }
 
     [NotMapped]
-    public IShuffleAlgorithm? ShuffleAlgorithm
-    {
-        get
-        {
-            if (!ShuffleAlgorithmType.HasValue)
-            {
-                ShuffleAlgorithmType = Models.ShuffleAlgorithmType.Simple;
-            }
-            if (_shuffleAlgorithm == null)
-            {
-                _shuffleAlgorithm = ShuffleAlgorithmFactory.CreateShuffleAlgorithm(ShuffleAlgorithmType.Value);
-                if (_shuffleAlgorithm == null)
-                {
-                    throw new InvalidOperationException($"Could not create shuffle algorithm of type {ShuffleAlgorithmType}");
-                }
-            }
-            return _shuffleAlgorithm;
-        }
-        set
-        {
-            _shuffleAlgorithm = value;
-        }
-    }
-
-    private IShuffleAlgorithm? _shuffleAlgorithm;
+    public IShuffleAlgorithm? ShuffleAlgorithm { get; set; }
 
     public void Shuffle()
     {
-        _shuffleAlgorithm?.Shuffle(Cards);
+        CheckShuffleAlgorithmCreated();
+        ShuffleAlgorithm?.Shuffle(Cards);
     }
 
     public Deck Copy()
     {
+        CheckShuffleAlgorithmCreated();
         return new Deck
         {
             Name = Name,
             Cards = new List<Card>(Cards),
-            ShuffleAlgorithm = _shuffleAlgorithm,
+            ShuffleAlgorithm = ShuffleAlgorithm,
             ShuffleAlgorithmType = ShuffleAlgorithmType
         };
     }
@@ -73,5 +51,22 @@ public class Deck
         }
 
         return true;
+    }
+
+    public void CheckShuffleAlgorithmCreated()
+    {
+        if (!ShuffleAlgorithmType.HasValue)
+        {
+            ShuffleAlgorithmType = Models.ShuffleAlgorithmType.Simple;
+        }
+        if (ShuffleAlgorithm == null)
+        {
+            IShuffleAlgorithm? shuffleAlgorithm = ShuffleAlgorithmFactory.CreateShuffleAlgorithm(ShuffleAlgorithmType.Value);
+            if (shuffleAlgorithm == null)
+            {
+                throw new InvalidOperationException($"Could not create shuffle algorithm of type {ShuffleAlgorithmType}");
+            }
+            ShuffleAlgorithm = shuffleAlgorithm;
+        }
     }
 }
