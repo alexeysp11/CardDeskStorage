@@ -4,6 +4,8 @@ namespace CardDeskStorage.Library.ShuffleAlgorithms;
 
 public class SimpleShuffleAlgorithm : IShuffleAlgorithm
 {
+    public ShuffleAlgorithmType Type => ShuffleAlgorithmType.Simple;
+
     private readonly Random _random = new Random();
 
     public void Shuffle(List<Card> deck)

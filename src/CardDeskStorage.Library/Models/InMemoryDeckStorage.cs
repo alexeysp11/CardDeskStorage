@@ -23,7 +23,13 @@ public class InMemoryDeckStorage : IDeckStorage
             throw new ArgumentException($"A deck with the name '{name}' already exists");
         }
 
-        _decks[name] = new Deck(name, cards, shuffleAlgorithm);
+        _decks[name] = new Deck
+        {
+            Name = name,
+            Cards = cards,
+            ShuffleAlgorithm = shuffleAlgorithm,
+            ShuffleAlgorithmType = shuffleAlgorithm.Type
+        };
     }
 
     public void ShuffleDeck(string name)

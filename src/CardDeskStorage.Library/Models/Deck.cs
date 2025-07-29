@@ -1,29 +1,55 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using CardDeskStorage.Library.ShuffleAlgorithms;
 
 namespace CardDeskStorage.Library.Models;
 
 public class Deck
 {
-    public string Name { get; set; }
-    private List<Card> Cards { get; set; }
+    public string? Name { get; set; }
+    public List<Card> Cards { get; set; } = new List<Card>();
+    public ShuffleAlgorithmType? ShuffleAlgorithmType { get; set; }
 
-    private readonly IShuffleAlgorithm _shuffleAlgorithm;
-
-    public Deck(string name, List<Card> cards, IShuffleAlgorithm shuffleAlgorithm)
+    [NotMapped]
+    public IShuffleAlgorithm? ShuffleAlgorithm
     {
-        Name = name;
-        Cards = new List<Card>(cards);
-        _shuffleAlgorithm = shuffleAlgorithm ?? throw new ArgumentNullException(nameof(shuffleAlgorithm));
+        get
+        {
+            if (!ShuffleAlgorithmType.HasValue)
+            {
+                ShuffleAlgorithmType = Models.ShuffleAlgorithmType.Simple;
+            }
+            if (_shuffleAlgorithm == null)
+            {
+                _shuffleAlgorithm = ShuffleAlgorithmFactory.CreateShuffleAlgorithm(ShuffleAlgorithmType.Value);
+                if (_shuffleAlgorithm == null)
+                {
+                    throw new InvalidOperationException($"Could not create shuffle algorithm of type {ShuffleAlgorithmType}");
+                }
+            }
+            return _shuffleAlgorithm;
+        }
+        set
+        {
+            _shuffleAlgorithm = value;
+        }
     }
+
+    private IShuffleAlgorithm? _shuffleAlgorithm;
 
     public void Shuffle()
     {
-        _shuffleAlgorithm.Shuffle(Cards);
+        _shuffleAlgorithm?.Shuffle(Cards);
     }
 
     public Deck Copy()
     {
-        return new Deck(Name, new List<Card>(Cards), _shuffleAlgorithm);
+        return new Deck
+        {
+            Name = Name,
+            Cards = new List<Card>(Cards),
+            ShuffleAlgorithm = _shuffleAlgorithm,
+            ShuffleAlgorithmType = ShuffleAlgorithmType
+        };
     }
 
     public bool IsSameOrder(Deck otherDeck)
