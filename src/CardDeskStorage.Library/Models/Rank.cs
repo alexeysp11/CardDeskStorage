@@ -16,4 +16,3 @@ public enum Rank
     King = 13,
     Ace = 14
 }
-

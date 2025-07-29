@@ -5,12 +5,15 @@ namespace CardDeskStorage.Library.Models;
 
 public class Deck
 {
+    public int Id { get; set; }
     public string? Name { get; set; }
-    public List<Card> Cards { get; set; } = new List<Card>();
+    
     public ShuffleAlgorithmType? ShuffleAlgorithmType { get; set; }
 
     [NotMapped]
     public IShuffleAlgorithm? ShuffleAlgorithm { get; set; }
+
+    public List<Card> Cards { get; set; } = new List<Card>();
 
     public void Shuffle()
     {
