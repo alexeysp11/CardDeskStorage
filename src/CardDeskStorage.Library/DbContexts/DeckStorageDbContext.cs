@@ -9,6 +9,6 @@ public class DeckStorageDbContext : DbContext
     {
     }
 
-    public DbSet<Deck> Decks { get; set; } = null!;
-    public DbSet<Card> Cards { get; set; } = null!;
+    public DbSet<Deck> Decks { get; set; }
+    public DbSet<Card> Cards { get; set; }
 }
