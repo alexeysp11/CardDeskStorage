@@ -14,7 +14,7 @@ public class InMemoryDeckStorageTest
     public InMemoryDeckStorageTest()
     {
         _deckStorage = new InMemoryDeckStorage();
-        _testCards = new List<Card> { new Card { Suit = Suit.Hearts, Rank = Rank.Ace }, new Card { Suit = Suit.Diamonds, Rank = Rank.King } };
+        _testCards = new List<Card> { new Card { Suit = Suit.Hearts, Rank = Rank.Ace }, new Card { Suit = Suit.Diamonds, Rank = Rank.King }, new Card { Suit = Suit.Spades, Rank = Rank.Seven }, new Card { Suit = Suit.Clubs, Rank = Rank.Queen }, new Card { Suit = Suit.Clubs, Rank = Rank.Jack }, new Card { Suit = Suit.Spades, Rank = Rank.Nine } };
         _shuffleAlgorithm = new SimpleShuffleAlgorithm();
     }
 
