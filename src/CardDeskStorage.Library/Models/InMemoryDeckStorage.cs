@@ -8,16 +8,14 @@ public class InMemoryDeckStorage : IDeckStorage
 
     public void CreateDeck(string name, List<Card> cards, IShuffleAlgorithm shuffleAlgorithm)
     {
-        if (string.IsNullOrWhiteSpace(name))
+        if (string.IsNullOrEmpty(name))
         {
             throw new ArgumentException("Deck name cannot be null or empty", nameof(name));
         }
-
         if (cards == null || cards.Count == 0)
         {
             throw new ArgumentException("Deck must contain cards", nameof(cards));
         }
-
         if (_decks.ContainsKey(name))
         {
             throw new ArgumentException($"A deck with the name '{name}' already exists");
@@ -73,7 +71,6 @@ public class InMemoryDeckStorage : IDeckStorage
         {
             throw new ArgumentException($"Deck with name '{deckName1}' not found");
         }
-
         if (!_decks.ContainsKey(deckName2))
         {
             throw new ArgumentException($"Deck with name '{deckName2}' not found");
